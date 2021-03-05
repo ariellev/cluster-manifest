@@ -4,4 +4,4 @@ metadata:
   name: admin
 spec:
   source:
-    path: admin/overlays/production
+    path: admin/argocd/production

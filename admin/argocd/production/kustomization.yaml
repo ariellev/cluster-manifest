@@ -3,14 +3,13 @@ kind: Kustomization
 
 # see https://argoproj.github.io/argo-cd/operator-manual/declarative-setup/#manage-argo-cd-using-argo-cd
 bases:
-- ../../base
+- ../base
 
 patches:
 - path: patch.yaml
   target:
     kind: Application
 
-namespace: admin
 # additional resources like ingress rules, cluster and repository secrets.
 # resources:
 # - clusters-secrets.yaml

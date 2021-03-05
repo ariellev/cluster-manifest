@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: admin
-  namespace: admin
+  namespace: argocd
 spec:
   sourceRepos:
   - https://github.com/ariellev/cluster-manifest.git
@@ -18,7 +18,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: valerann
-  namespace: admin
+  namespace: argocd
 spec:
   sourceRepos:
   - https://github.com/ariellev/cluster-manifest.git
@@ -33,8 +33,8 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: admin
-  namespace: admin
+  name: argocd
+  namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
