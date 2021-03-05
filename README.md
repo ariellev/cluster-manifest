@@ -5,7 +5,7 @@ A collection of Kubernetes applications to showcase [Argo CD](https://argoproj.g
 1. Install [kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
 2. Create a Kubernetes cluster for each staging environment
 ```shell
-  environments=( dev staging production )
+  export environments=( dev staging production )
 
   # Create the clusters
 
@@ -25,7 +25,7 @@ A collection of Kubernetes applications to showcase [Argo CD](https://argoproj.g
 ```
 3. Add DNS entries to `/etc/hosts`
 ```shell
-  environments=( dev staging production )
+  export environments=( dev staging production )
   for e in "${environments[@]}"; do       \
   echo "127.0.0.1  $e.com www.$e.com" |   \
   sudo tee -a /etc/hosts ;                \
@@ -34,7 +34,7 @@ A collection of Kubernetes applications to showcase [Argo CD](https://argoproj.g
 
 4. Run a local reverse proxy
 ```shell
-  export IP_ADDRESS=192.168.0.54
+  export IP_ADDRESS=xx.xx.xx.xx
 
   sed "s/{{ IP_ADDRESS }}/$IP_ADDRESS/g" nginx.conf.template > nginx.conf
 

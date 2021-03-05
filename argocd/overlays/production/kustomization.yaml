@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# see https://argoproj.github.io/argo-cd/operator-manual/declarative-setup/#manage-argo-cd-using-argo-cd
+bases:
+- ../../base
+- https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/install.yaml
+- ../../apps
+
+patches:
+- path: patch.yaml
+  target:
+    kind: Application
+
+# additional resources like ingress rules, cluster and repository secrets.
+# resources:
+# - clusters-secrets.yaml
+# - repos-secrets.yaml
+#
+# # changes to config maps
+# patchesStrategicMerge:
+# - overlays/argo-cd-cm.yaml
