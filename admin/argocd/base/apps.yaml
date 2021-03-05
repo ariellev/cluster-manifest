@@ -27,7 +27,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: admin
+  project: valerann
   source:
     path: clusters/production/helm
     repoURL: https://github.com/ariellev/cluster-manifest.git
