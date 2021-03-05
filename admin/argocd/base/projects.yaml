@@ -20,6 +20,7 @@ metadata:
 spec:
   sourceRepos:
   - https://github.com/ariellev/cluster-manifest.git
+  - https://github.com/ariellev/demo.git
   destinations:
   - namespace: valerann
     server: https://kubernetes.default.svc
