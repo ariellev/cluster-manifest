@@ -9,7 +9,9 @@ patches:
 - path: patch.yaml
   target:
     kind: Application
-
+- path: patch0.yaml
+  target:
+    kind: Application
 # additional resources like ingress rules, cluster and repository secrets.
 # resources:
 # - clusters-secrets.yaml
