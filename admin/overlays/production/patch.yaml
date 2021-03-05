@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: admin
 spec:
   source:
-    path: argocd/overlays/production
+    path: admin/overlays/production

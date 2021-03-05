@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: admin
-  namespace: argocd
+  namespace: admin
 spec:
   sourceRepos:
   - https://github.com/ariellev/cluster-manifest.git
@@ -13,19 +13,34 @@ spec:
   # A role which provides read-only access to all applications in the project
   - name: read-only
     description: Read-only privileges to argocd
-
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: valerann
+  namespace: admin
+spec:
+  sourceRepos:
+  - https://github.com/ariellev/cluster-manifest.git
+  destinations:
+  - namespace: valerann
+    server: https://kubernetes.default.svc
+  roles:
+  # A role which provides read-only access to all applications in the project
+  - name: read-only
+    description: Read-only privileges to argocd
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
-  namespace: argocd
+  name: admin
+  namespace: admin
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: admin
   source:
-    path: argocd
+    path: admin
     repoURL: https://github.com/ariellev/cluster-manifest.git
     targetRevision: master
   destination:
