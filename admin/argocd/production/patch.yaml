@@ -5,3 +5,11 @@ metadata:
 spec:
   source:
     path: admin/argocd/production
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: valerann
+spec:
+  source:
+    path: clusters/production/helm
