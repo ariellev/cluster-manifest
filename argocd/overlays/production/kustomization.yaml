@@ -5,7 +5,6 @@ kind: Kustomization
 bases:
 - ../../base
 - https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/install.yaml
-- ../../apps
 
 patches:
 - path: patch.yaml
