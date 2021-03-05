@@ -7,5 +7,6 @@ bases:
 namespace: argocd
 
 resources:
-  - argo.yaml
   - ns.yaml
+  - apps.yaml
+  - projects.yaml
