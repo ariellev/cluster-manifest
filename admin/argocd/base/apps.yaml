@@ -1,24 +1,24 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: argocd
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  project: admin
-  source:
-    path: admin
-    repoURL: https://github.com/ariellev/cluster-manifest.git
-    targetRevision: master
-  destination:
-    namespace: argocd
-    server: https://kubernetes.default.svc
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
----
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: argocd
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: admin
+#   source:
+#     path: admin
+#     repoURL: https://github.com/ariellev/cluster-manifest.git
+#     targetRevision: master
+#   destination:
+#     namespace: argocd
+#     server: https://kubernetes.default.svc
+#   syncPolicy:
+#     automated:
+#       selfHeal: true
+#       prune: true
+# ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
