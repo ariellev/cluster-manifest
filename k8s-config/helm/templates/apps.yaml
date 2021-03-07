@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    path: k8s-config/production
+    path: {{ .Values.path }}
     repoURL: https://github.com/ariellev/cluster-manifest.git
     targetRevision: master
   destination:

@@ -1,0 +1,4 @@
+apiVersion: v2
+name: bootstrap
+description: A Helm chart for bootstrapping a cluster
+version: 0.0.1
