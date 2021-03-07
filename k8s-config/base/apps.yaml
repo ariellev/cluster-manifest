@@ -19,25 +19,3 @@
 #       selfHeal: true
 #       prune: true
 # ---
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: production
-  namespace: argocd
-  labels:
-    app: manifests
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  project: default
-  source:
-    path: k8s-config/production
-    repoURL: https://github.com/ariellev/cluster-manifest.git
-    targetRevision: master
-  destination:
-    namespace: default
-    server: https://kubernetes.default.svc
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
