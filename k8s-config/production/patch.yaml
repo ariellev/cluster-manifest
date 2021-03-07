@@ -1,7 +1,0 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: production
-spec:
-  source:
-    path: k8s-config/production
