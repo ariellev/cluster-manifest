@@ -7,8 +7,10 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
-  helm: |
+  repositories: |
   - url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts
     name: istio.io
+    type: helm
   - url: https://getambassador.io
     name: datawire
+    type: helm
