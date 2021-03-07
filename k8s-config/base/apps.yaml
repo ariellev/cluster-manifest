@@ -24,6 +24,8 @@ kind: Application
 metadata:
   name: production
   namespace: argocd
+  labels:
+    app: manifests
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
