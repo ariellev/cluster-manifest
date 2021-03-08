@@ -1,5 +1,6 @@
 argo-cd:
   installCRDs: false
+  fullnameOverride: "argocd"
   global:
     image:
       tag: v1.8.7
@@ -16,3 +17,6 @@ argo-cd:
         - type: helm
           name: argo-cd
           url: https://argoproj.github.io/argo-helm
+        - type: helm
+          name: datawire
+          url: https://getambassador.io

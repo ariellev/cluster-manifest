@@ -1,1 +1,5 @@
 name: production
+environments:
+  - dev
+  - staging
+  - production

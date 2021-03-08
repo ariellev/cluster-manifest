@@ -1,0 +1,8 @@
+apiVersion: v2
+name: common
+version: 1.0.0
+
+dependencies:
+  - name: ambassador
+    version: 6.5.20
+    repository: datawire

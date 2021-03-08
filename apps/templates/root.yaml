@@ -1,19 +1,83 @@
+{{- range .Values.environments }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ . }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ . }}
+spec:
+  sourceRepos:
+  - https://github.com/ariellev/cluster-manifest.git
+  destinations:
+  - namespace: {{ . }}
+    server: https://kubernetes.default.svc
+  # roles:
+  # # A role which provides read-only access to all applications in the project
+  # - name: read-only
+  #   description: Read-only privileges to argocd
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root
+  name: {{ . }}-root
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
-  project: default
+    namespace: {{ . }}
+  project: {{ . }}
   source:
-    path: manifests/{{ .Values.name }}
+    path: manifests/{{ . }}
     repoURL: https://github.com/ariellev/cluster-manifest.git
     targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+---
+{{- end }}
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: admin-root
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: "*"
+  project: default
+  source:
+    path: manifests/admin
+    repoURL: https://github.com/ariellev/cluster-manifest.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+#
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: root
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: default
+#   project: default
+#   source:
+#     path: manifests/{{ .Values.name }}
+#     repoURL: https://github.com/ariellev/cluster-manifest.git
+#     targetRevision: HEAD
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
