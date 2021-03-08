@@ -4,11 +4,7 @@ argo-cd:
   global:
     image:
       tag: v1.8.7
-#   # dex:
-#   #   enabled: false
   server:
-    # extraArgs:
-    # - --insecure
     config:
       repositories: |
         - type: helm
