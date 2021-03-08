@@ -5,6 +5,13 @@ argo-cd:
     image:
       tag: v1.8.7
   server:
+    # rbacConfig:
+    #   policy.csv: |
+    #     # Grant all members of the group 'my-org:team-alpha; the ability to sync apps in 'my-project'
+    #     p, my-org:team-alpha, applications, sync, my-project/*, allow
+    #     # Grant all members of 'my-org:team-beta' admins
+    #     g, my-org:team-beta, role:admin
+
     config:
       repositories: |
         - type: helm

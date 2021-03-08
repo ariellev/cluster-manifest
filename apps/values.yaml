@@ -3,3 +3,4 @@ environments:
   - dev
   - staging
   - production
+  - admin
