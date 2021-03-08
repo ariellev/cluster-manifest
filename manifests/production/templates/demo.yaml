@@ -28,6 +28,7 @@ spec:
           periodSeconds: 3
       imagePullSecrets:
         - name: jfrog
+      imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
