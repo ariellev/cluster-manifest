@@ -26,9 +26,9 @@ spec:
             port: 5000
           initialDelaySeconds: 3
           periodSeconds: 3
+        imagePullPolicy: Always
       imagePullSecrets:
         - name: jfrog
-      imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
