@@ -1,18 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "fullname" . }}
+  name: demo
   labels:
-    app: {{ template "fullname" . }}
+    app: demo
+
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ template "fullname" . }}
+      app: demo
   template:
     metadata:
       labels:
-        app: {{ template "fullname" . }}
+        app: demo
     spec:
       containers:
       - name: frontend
@@ -25,10 +26,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "fullname" . }}
+  name: demo
 spec:
   selector:
-    app: {{ template "fullname" . }}
+    app: demo
   ports:
     - protocol: TCP
       port: 80
@@ -37,19 +38,19 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ template "fullname" . }}
+  name: demo
   annotations:
     ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.class: ambassador
 spec:
   rules:
-  - host: {{ template "fullname" . }}.{{ .Values.ingress.host }}
+  - host: demo.{{ .Chart.name }}.com
     http:
       paths:
         - path: /
           pathType: Prefix
           backend:
             service:
-              name: {{ .Values.service.name }}
+              name: demo
               port:
                 number: 80
