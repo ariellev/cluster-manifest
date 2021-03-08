@@ -3,6 +3,6 @@ name: admin
 version: 1.0.0
 
 dependencies:
-  - name: nginx-ingress
+  - name: ingress-nginx
     version: 3.23.0
     repository: "@ingress-nginx"
