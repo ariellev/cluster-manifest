@@ -1,6 +1,0 @@
-ingress-nginx:
-  service:
-    type: NodePort
-    nodePorts:
-      http: 8080
-      https: 8443
