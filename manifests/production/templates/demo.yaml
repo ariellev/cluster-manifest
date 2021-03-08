@@ -27,7 +27,7 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 3
       imagePullSecrets:
-        - name: jfrog          
+        - name: jfrog
 ---
 apiVersion: v1
 kind: Service
@@ -47,7 +47,7 @@ metadata:
   name: demo
   annotations:
     ingress.kubernetes.io/rewrite-target: /
-    kubernetes.io/ingress.class: ambassador
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
   - host: demo.{{ .Chart.Name }}.com

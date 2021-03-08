@@ -20,3 +20,6 @@ argo-cd:
         - type: helm
           name: datawire
           url: https://getambassador.io
+        - type: helm
+          name: ingress-nginx
+          url: https://kubernetes.github.io/ingress-nginx
