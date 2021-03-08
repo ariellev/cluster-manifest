@@ -44,7 +44,7 @@ metadata:
     kubernetes.io/ingress.class: ambassador
 spec:
   rules:
-  - host: demo.{{ .Chart.name }}.com
+  - host: demo.{{ .Chart.Name }}.com
     http:
       paths:
         - path: /
