@@ -20,14 +20,14 @@ spec:
         image: valerann.jfrog.io/docker/demo:{{ .Values.image.tag }}
         ports:
         - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 3
+          periodSeconds: 3
       imagePullSecrets:
-        - name: jfrog
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 3000
-        initialDelaySeconds: 3
-        periodSeconds: 3
+        - name: jfrog          
 ---
 apiVersion: v1
 kind: Service
