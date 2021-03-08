@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+    spec:
+      containers:
+      - name: frontend
+        image: valerann.jfrog.io/docker/demo:{{ .Values.image.tag }}
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+        - name: jfrog
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}
+spec:
+  selector:
+    app: {{ template "fullname" . }}
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ template "fullname" . }}
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: ambassador
+spec:
+  rules:
+  - host: {{ template "fullname" . }}.{{ .Values.ingress.host }}
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: {{ .Values.service.name }}
+              port:
+                number: 80
