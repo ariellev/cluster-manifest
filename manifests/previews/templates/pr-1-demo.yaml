@@ -9,7 +9,7 @@ spec:
   project: previews
   source:
     path: helm
-    repoURL: valerann.jfrog.io/docker/demo.git
+    repoURL: https://github.com/ariellev/demo.git
     targetRevision: HEAD
     helm:
       values: |
