@@ -1,4 +1,4 @@
-apiVersion: v2
-kind: Namespace
-metadata:
-  name: previews
+# apiVersion: v2
+# kind: Namespace
+# metadata:
+#   name: previews
