@@ -19,7 +19,7 @@ spec:
           host: "pr-1-demo.192.168.5.90.xip.io"
       version: v3
   destination:
-    namespace: "pr-1-demo"
+    namespace: previews
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
