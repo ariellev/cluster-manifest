@@ -6,7 +6,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: previews
+  project: default
   source:
     path: helm
     repoURL: https://github.com/ariellev/demo.git
