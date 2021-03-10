@@ -2,7 +2,7 @@ apiVersion: v2
 name: admin
 version: 1.0.0
 
-# dependencies:
-#   - name: ingress-nginx
-#     version: 3.23.0
-#     repository: "@ingress-nginx"
+dependencies:
+  - name: vault
+    version: 0.9.1
+    repository: "@hashicorp"
