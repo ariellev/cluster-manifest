@@ -4,7 +4,11 @@ A collection of Kubernetes applications to showcase [Argo CD](https://argoproj.g
 ### TL;DR
 ```
 > make toolchain-mac
-> minikube start
+> make create-cluster-kind
+
+> export docker_user=...
+> export docker_password=...
+> export ingress_host=... # e.g. 192.168.5.90.xip.io
 > make helm-repos install
 
 # In a separate shell

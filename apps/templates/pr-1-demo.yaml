@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "pr-1-demo"
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: previews
+  source:
+    path: helm
+    repoURL: https://github.com/ariellev/demo.git
+    targetRevision: HEAD
+    helm:
+      values: |
+        image:
+          tag: "production"
+        ingress:
+          host: "pr-1-demo.192.168.5.90.xip.io"
+      version: v3
+  destination:
+    namespace: previews
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=false

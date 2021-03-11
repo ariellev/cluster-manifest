@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "{{.Env.app_id}}"
+  namespace: previews
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: previews
+  source:
+    path: helm
+    repoURL: https://github.com/ariellev/{{.Env.repo}}.git
+    targetRevision: HEAD
+    helm:
+      values: |
+        image:
+          tag: "{{.Env.image_tag}}"
+        ingress:
+          host: "{{.Env.hostname}}"
+      version: v3
+  destination:
+    # TODO: create new namespace per preview
+    # Challange: inject jfrog secrets
+    # namespace: "{{.Env.app_id}}"
+    namespace: previews
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=false

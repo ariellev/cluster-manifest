@@ -4,4 +4,4 @@ environments:
   - staging
   - production
   - admin
-  - previews
+  # - previews

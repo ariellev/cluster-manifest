@@ -11,7 +11,10 @@ argo-cd:
     #     p, my-org:team-alpha, applications, sync, my-project/*, allow
     #     # Grant all members of 'my-org:team-beta' admins
     #     g, my-org:team-beta, role:admin
-
+    extraArgs:
+      - --insecure
+    ingress:
+      enabled: true
     config:
       repositories: |
         - type: helm
@@ -26,3 +29,45 @@ argo-cd:
         - type: helm
           name: ingress-nginx
           url: https://kubernetes.github.io/ingress-nginx
+        - type: helm
+          name: hashicorp
+          url: https://helm.releases.hashicorp.com
+      configManagementPlugins: |-
+          - name: argocd-vault-plugin
+            generate:
+              command: ["argocd-vault-plugin"]
+              args: ["generate", "./"]
+
+  repoServer:
+     # https://itnext.io/argocd-secret-management-with-argocd-vault-plugin-539f104aff05
+     # 1. Define an emptyDir volume which will hold the custom binaries
+      volumes:
+      - name: custom-tools
+        emptyDir: {}
+      # 2. Use an init container to download/copy custom binaries into the emptyDir
+      initContainers:
+      - name: download-tools
+        image: alpine:3.8
+        command: [sh, -c]
+        args:
+          - wget -O argocd-vault-plugin
+            https://github.com/IBM/argocd-vault-plugin/releases/download/v0.3.0/argocd-vault-plugin_0.3.0_linux_amd64
+
+            chmod +x argocd-vault-plugin && mv argocd-vault-plugin /custom-tools/
+        volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
+      # 3. Volume mount the custom binary to the bin directory (overriding the existing version)
+      volumeMounts:
+        - name: custom-tools
+          mountPath: /usr/local/bin/argocd-vault-plugin
+          subPath: argocd-vault-plugin
+      # env:
+      #   AVP_AUTH_TYPE: approle
+      #   AVP_ROLE_ID: your_role_id
+      #   AVP_SECRET_ID: your_secret_id
+      #   AVP_TYPE: vault
+      #   AVP_VAULT_ADDR: http://admin-root-vault.admin:8200
+      # envFrom:
+      #   - secretRef:
+      #       name: argocd-vault-plugin-credentials

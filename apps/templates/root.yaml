@@ -10,7 +10,7 @@ metadata:
   name: {{ . }}
 spec:
   sourceRepos:
-  - https://github.com/ariellev/cluster-manifest.git
+  - https://github.com/ariellev/*.git
   destinations:
   - namespace: {{ . }}
     server: https://kubernetes.default.svc
