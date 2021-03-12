@@ -4,7 +4,7 @@ list:
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
 toolchain-mac:
-	@brew install kind kubectx helm minikube gomplate
+	@brew install kind kubectx helm minikube gomplate argocd argo
 
 create-cluster-kind:
 	@kind create cluster --name ${name} --config=kind.yaml
@@ -47,3 +47,12 @@ proxy-vault:
 
 ssh:
 	kubectl exec --stdin --tty ${pod} -n ${ns} -- /bin/bash
+
+argo-log:
+	argo -n argo logs @latest
+
+argo-get:
+	argo -n argo get @latest
+
+proxy-argo-event-source:
+	kubectl -n argo-events port-forward service/webhook-eventsource-svc 12000:12000	
