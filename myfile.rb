@@ -14,4 +14,4 @@ class Octocat
 end
 
 m = Octocat.new("Mona", "cat", "octopus")
-m.displayy
+m.displayyy
