@@ -3,7 +3,7 @@ A collection of Kubernetes applications to showcase [Argo CD](https://argoproj.g
 
 ### TL;DR
 ```
-# comment2
+# comment3
 > make toolchain-mac
 > make create-cluster-kind
 
